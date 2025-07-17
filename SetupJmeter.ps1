@@ -34,3 +34,7 @@ if ($oldPath -notlike "*$jmeterBinPath*") {
 } else {
     Write-Host " JMeter path already exists in system PATH."
 }
+
+# Launch JMeter GUI
+Write-Host " Launching JMeter GUI..."
+Start-Process "$jmeterBinPath\jmeter.bat"
