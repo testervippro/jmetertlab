@@ -6,6 +6,8 @@
 ## 5.  Post-Processors
 ## 6.  Assertions
 ## 7.  Listeners
+## 8. In-built Functions trong JMeter
+
 
 #  JMeter – Các Thành Phần (Elements)
 
@@ -1092,6 +1094,182 @@ if (!prev.isSuccessful()) {
 | JSR223 Listener    | Script xử lý kết quả bằng Groovy (JSR223) | Gửi cảnh báo hoặc xử lý kết quả phức tạp |
 
 ---
+
+**In-built Function** trong JMeter, 
+
+### 1. `threadNum`
+
+* **Mục đích:** Trả về số thứ tự (ID) của thread (người dùng ảo) đang thực thi trong Thread Group.
+* **Giá trị trả về:** Số nguyên, bắt đầu từ 1.
+* **Ví dụ sử dụng:**
+
+  ```
+  User number: ${__threadNum}
+  ```
+* **Ứng dụng:** Dùng để phân biệt các thread khi cần tạo dữ liệu hoặc xử lý riêng biệt cho từng user.
+
+---
+
+### 2. `threadGroupName`
+
+* **Mục đích:** Trả về tên của Thread Group mà thread đang chạy thuộc về.
+* **Ví dụ:**
+
+  ```
+  Current thread group: ${__threadGroupName}
+  ```
+* **Ứng dụng:** Hiển thị hoặc ghi log nhóm thread đang chạy, hữu ích khi test nhiều nhóm cùng lúc.
+
+---
+
+### 3. `samplerName`
+
+* **Mục đích:** Trả về tên của sampler đang được thực thi.
+* **Ví dụ:**
+
+  ```
+  Executing sampler: ${__samplerName}
+  ```
+* **Ứng dụng:** Giúp debug hoặc ghi lại tên request đang được gửi trong các báo cáo.
+
+---
+
+### 4. `machineName`
+
+* **Mục đích:** Lấy tên máy (hostname) đang chạy JMeter.
+* **Ví dụ:**
+
+  ```
+  Host machine: ${__machineName}
+  ```
+* **Ứng dụng:** Ghi log hoặc phân biệt kết quả khi chạy test phân tán nhiều máy.
+
+---
+
+### 5. `machineIP`
+
+* **Mục đích:** Lấy địa chỉ IP của máy chạy JMeter.
+* **Ví dụ:**
+
+  ```
+  IP Address: ${__machineIP}
+  ```
+* **Ứng dụng:** Giống như `machineName`, dùng để ghi nhận kết quả test theo IP máy.
+
+---
+
+### 6. `time`
+
+* **Mục đích:** Lấy thời gian hiện tại.
+* **Tham số:** Có thể truyền định dạng ngày giờ theo chuẩn Java `SimpleDateFormat`.
+* **Ví dụ:**
+
+  * Lấy timestamp Epoch (mili giây kể từ 1/1/1970):
+
+    ```
+    ${__time()}
+    ```
+  * Lấy thời gian theo định dạng ngày-tháng-năm giờ\:phút\:giây:
+
+    ```
+    ${__time(yyyy-MM-dd HH:mm:ss)}
+    ```
+* **Ứng dụng:** Ghi lại thời gian request hoặc làm biến đầu vào cho script.
+
+---
+
+### 7. `timeShift`
+
+* **Mục đích:** Trả về thời gian đã được dịch chuyển (cộng hoặc trừ) theo đơn vị thời gian (giờ, ngày, phút,...).
+* **Cú pháp:**
+
+  ```
+  ${__timeShift(format, shift, unit, [locale])}
+  ```
+
+  * `format`: định dạng thời gian trả về (vd: yyyy-MM-dd)
+  * `shift`: số lượng dịch chuyển (số âm hoặc dương)
+  * `unit`: đơn vị dịch chuyển (ss: giây, mm: phút, HH: giờ, dd: ngày, MM: tháng, yyyy: năm)
+  * `locale`: (tùy chọn) vùng ngôn ngữ
+* **Ví dụ:**
+
+  * Lấy ngày hôm trước:
+
+    ```
+    ${__timeShift(yyyy-MM-dd, -1, dd)}
+    ```
+* **Ứng dụng:** Tạo dữ liệu theo ngày tháng động cho việc test.
+
+---
+
+### 8. `log`
+
+* **Mục đích:** Ghi log thông tin vào file log của JMeter.
+* **Cú pháp:**
+
+  ```
+  ${__log(message, log_level)}
+  ```
+
+  * `message`: chuỗi hoặc biến cần ghi log
+  * `log_level`: mức log (INFO, DEBUG, WARN, ERROR)
+* **Ví dụ:**
+
+  ```
+  ${__log(Thread ${__threadNum} started, INFO)}
+  ```
+* **Ứng dụng:** Hữu ích để debug hoặc theo dõi giá trị biến trong quá trình chạy test.
+
+---
+
+### 9. `long`
+
+* **Mục đích:** Chuyển đổi giá trị chuỗi sang kiểu số nguyên dài (long).
+* **Ứng dụng:** Khi cần xử lý tính toán với số lớn trong script.
+* **Ví dụ:**
+
+  ```
+  ${__long(${var1})}
+  ```
+* **Lưu ý:** Ít dùng riêng lẻ, thường kết hợp trong script BeanShell hoặc JSR223.
+
+---
+
+### 10. `dateTimeConvert`
+
+* **Mục đích:** Chuyển đổi định dạng ngày giờ từ một định dạng sang định dạng khác.
+* **Cú pháp:**
+
+  ```
+  ${__dateTimeConvert(fromFormat, toFormat, dateToConvert, [locale])}
+  ```
+* **Ví dụ:**
+
+  ```
+  ${__dateTimeConvert(yyyy-MM-dd, dd/MM/yyyy, ${myDate})}
+  ```
+* **Ứng dụng:** Chuyển đổi dữ liệu ngày giờ lấy từ response hoặc input cho phù hợp với yêu cầu.
+
+---
+
+### 11. `digest`
+
+* **Mục đích:** Tạo chuỗi băm (hash) từ một chuỗi đầu vào với thuật toán như MD5, SHA1.
+* **Cú pháp:**
+
+  ```
+  ${__digest(stringToHash, algorithm)}
+  ```
+* **Ví dụ:**
+
+  ```
+  ${__digest(myPassword, MD5)}
+  ```
+* **Ứng dụng:** Mã hóa mật khẩu hoặc dữ liệu bảo mật trong kịch bản kiểm thử.
+
+---
+
+Hy vọng bạn đã có thêm kiến thức vững chắc để bắt đầu kiểm thử hiệu năng với JMeter.
 
 
 
