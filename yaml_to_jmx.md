@@ -16,6 +16,10 @@ npm install -g openapi-to-jmx
 ```bash
 openapi2jmx /path/to/your/test.yaml
 ```
+Or 
+```bash
+openapi2jmx swagger.json
+```
 
 **Example output:**
 
