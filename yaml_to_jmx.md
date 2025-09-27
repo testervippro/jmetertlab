@@ -28,5 +28,5 @@ JMeter test plan generated: test_plan.jmx
 ```
 jmeter -t test_plan.jmx 
 ```
-<img width="2348" height="1530" alt="image" src="https://github.com/user-attachments/assets/dfc01275-537f-4ea2-a01b-4270ef8e4833" />
+<img width="2338" height="1464" alt="image" src="https://github.com/user-attachments/assets/bf4eaea2-468b-4f20-ad08-c636aebd1966" />
 
