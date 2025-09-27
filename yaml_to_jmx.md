@@ -1,3 +1,5 @@
+# Replace const file = fs.readFileSync('api.yaml', 'utf8') like your file
+``` java
 const fs = require('fs');
 const yaml = require('js-yaml');
 const builder = require('xmlbuilder'); // Used to generate XML for JMeter .jmx
@@ -164,5 +166,50 @@ Object.keys(tagsMap).forEach(tag => {
 
 // Write the XML string to a .jmx file
 const xmlString = testPlan.end({ pretty: true });
-fs.writeFileSync('openapi_test_plan.jmx', xmlString, 'utf8');
+fs.writeFileSync('test_plan.jmx', xmlString, 'utf8');
 console.log('JMeter test plan generated: openapi_test_plan.jmx');
+```
+# Example Yaml 
+``` java
+openapi: 3.0.0
+info:
+  title: Sample API
+  version: 1.0.0
+
+paths:
+  /api/v1/single-tag-endpoint:
+    get:
+      summary: "Endpoint with a single tag"
+      tags:
+        - Config
+      responses:
+        '200':
+          description: OK
+
+  /api/v1/multi-tag-endpoint:
+    post:
+      summary: "Endpoint with multiple tags"
+      tags:
+        - Donation
+        - Payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  example: 100
+                currency:
+                  type: string
+                  example: USD
+      responses:
+        '200':
+          description: OK
+
+````
+Run jmeter -t test_plan.jmx
+# Example output 
+<img width="1171" height="756" alt="Screenshot 2025-09-27 at 2 56 44 PM" src="https://github.com/user-attachments/assets/fb2d3ace-cc64-4a66-9c5f-4467af56b2c6" />
+
