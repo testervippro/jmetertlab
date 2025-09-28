@@ -29,8 +29,18 @@ Below is a breakdown of the basic JMeter graphs and their interpretation:
 
 **JMeter Graph:** **Active Threads Over Time**
 https://stackoverflow.com/questions/79368736/active-threads-over-time-vs-number-of-threads-users
-<img width="1666" height="543" alt="image" src="https://github.com/user-attachments/assets/902d120d-2462-4ac2-b572-f2699c60a7cd" />
-<img width="1668" height="536" alt="image" src="https://github.com/user-attachments/assets/b4ed9164-e978-4196-8356-aa9da8c9a2bf" />
+
+
+<img width="2344" height="1518" alt="image" src="https://github.com/user-attachments/assets/2dc205b7-91bc-4e58-95b0-430ce3a1fe91" />
+
+<img width="1638" height="527" alt="image" src="https://github.com/user-attachments/assets/3e387445-5e74-42bd-aa88-673d5225a0dc" />
+
+## Setting without Specific Thread lifetime
+<img width="2324" height="1490" alt="image" src="https://github.com/user-attachments/assets/d761d211-7e67-41c4-8e89-a67f0636f905" />
+
+
+<img width="1672" height="525" alt="image" src="https://github.com/user-attachments/assets/21e7a4df-4444-47d1-ab78-9745a7bdaa4d" />
+
 
 
 **Tip:** This graph is critical for validating that your load pattern matches the test plan.
