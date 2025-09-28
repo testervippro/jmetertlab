@@ -28,6 +28,7 @@ Below is a breakdown of the basic JMeter graphs and their interpretation:
 * When threads exited.
 
 **JMeter Graph:** **Active Threads Over Time**
+https://stackoverflow.com/questions/79368736/active-threads-over-time-vs-number-of-threads-users
 <img width="1666" height="543" alt="image" src="https://github.com/user-attachments/assets/902d120d-2462-4ac2-b572-f2699c60a7cd" />
 <img width="1668" height="536" alt="image" src="https://github.com/user-attachments/assets/b4ed9164-e978-4196-8356-aa9da8c9a2bf" />
 
