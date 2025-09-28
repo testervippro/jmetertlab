@@ -1,4 +1,4 @@
-https://jmeter.apache.org/usermanual/generating-dashboard.html?utm_source=chatgpt.com
+https://jmeter.apache.org/usermanual/generating-dashboard.html?utm_source
 # **Step-by-Step Guide: Run JMeter Test and Generate Report by CSV**
 
 ---
@@ -6,29 +6,7 @@ https://jmeter.apache.org/usermanual/generating-dashboard.html?utm_source=chatgp
 ## **Step 1: Prepare Your Test Plan**
 
 1. Open **JMeter GUI**.
-2. Add **Thread Groups**, **Samplers**, **Controllers**, and **Assertions** as needed.
-3. Make sure your samplers have meaningful names; these names appear in the report.
-4. Configure **CSV saving**:
-
-   * Open `user.properties` (or `jmeter.properties`) and ensure the following:
-
-```properties
-# Save required fields in CSV
-jmeter.save.saveservice.output_format=csv
-jmeter.save.saveservice.label=true
-jmeter.save.saveservice.response_code=true
-jmeter.save.saveservice.response_message=true
-jmeter.save.saveservice.successful=true
-jmeter.save.saveservice.thread_counts=true
-jmeter.save.saveservice.bytes=true
-jmeter.save.saveservice.latency=true
-jmeter.save.saveservice.connect_time=true
-jmeter.save.saveservice.time=true
-jmeter.save.saveservice.assertion_results_failure_message=true
-jmeter.save.saveservice.timestamp_format=ms
-```
-
-5. Save your test plan, e.g., `testplan.jmx`.
+2. Save your test plan, e.g., `testplan.jmx`.
 
 ---
 
