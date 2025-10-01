@@ -1,6 +1,9 @@
-// Loop request use groovy
+
+```groovy
+// Loop request using Groovy in JMeter
 import org.apache.jmeter.samplers.SampleResult
-// https://jmeter.apache.org/api/org/apache/jmeter/samplers/SampleResult.html
+// Documentation: https://jmeter.apache.org/api/org/apache/jmeter/samplers/SampleResult.html
+
 // Get the URL from a JMeter variable, or use a default if not set
 def url = vars.get("URL") ?: "http://google.com"
 
@@ -43,3 +46,8 @@ for (int i = 1; i <= 10; i++) {
     // Send the SampleResult to View Results Tree
     SampleResult.addSubResult(result)  // This will make it appear in the listener
 }
+```
+
+---
+
+
